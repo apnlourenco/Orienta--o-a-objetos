@@ -1,40 +1,56 @@
 import java.util.ArrayList;
-import java.util.List;
 
-public class Apostas {
+public class Aposta {
 
-    private List<Integer> numeros;
-    Integer numero;
+    private ArrayList<Aposta> apostas;
+    private ArrayList<Integer> numeros;
 
-   public Apostas () {
-    numeros = new ArrayList<> ();    
-}
+    public Aposta() {
+        apostas = new ArrayList<>();
+        numeros = new ArrayList<>();
+    }
+
     public boolean adicionarNumero(Integer num) {
-        for (int i = 1; i <=60 ; i++ ) {
-        if (numero == num ) {
-        }    return false;     
+        if (num > 0 && num < 60 && numeros.size() < 6 && !numeros.contains(num)) {
+            numeros.add(num);
+            return true;
+        }
+        return false;
+    }
 
-    } 
-        numeros.add(num);
+    public boolean ehValido() {
+        if (numeros.size() != 6) {
+            return false;
+        }
+
+        for (int i = 0; i < numeros.size(); i++) {
+            for (int j = i + 1; j < numeros.size(); j++) {
+                if (numeros.get(i).equals(numeros.get(j))) {
+                    return false;
+                }
+            }
+        }
+
         return true;
     }
-    public List<Integer> getNumeros() {
-        return numeros;
+
+    public boolean iniciarAposta(ArrayList<Aposta> aposta, Aposta nova) {
+        return aposta.add (nova);
     }
-    public void setNumeros(List<Integer> numeros) {
-        this.numeros = numeros;
+
+    public char[] verJogos() {
+        return null;
     }
-    public Integer getNumero() {
-        return numero;
+
+    public char[] verResultdos() {
+        return null;
     }
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
-    public String toString() {
-        return "Apostas [numeros=" + numeros + ", numero=" + numero + "]";
-    }
-	public boolean iniciarAposta() {
-		return false;
+
+	public Object getNumeros() {
+		return null;
 	}
-      
+
+    
+    
+
 }
